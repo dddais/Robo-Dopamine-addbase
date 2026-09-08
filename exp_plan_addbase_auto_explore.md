@@ -8,7 +8,7 @@
 
 ## 研究背景：
 
-- 基于/home/dais/workspace/Robo-Dopamine/mydata_bench/exp_plan.md的规划，进行了baseline 和attention steering的实验，目前发现在robo-dopamine的GRM上该方法的效果十分明显;
+- 基于/home/dais/workspace/Robo-Dopamine-addbase/mydata_bench/exp_plan.md的规划，进行了baseline 和attention steering的实验，目前发现在robo-dopamine的GRM上该方法的效果十分明显;
 - 但是在qwen3-vl-8b和roboreward-8b的效果不是很明显
 - 已有实验可供参考：
   - 目前已进行的GRM实验结果：/home/dais/workspace/Robo-Dopamine/mydata_bench/exp_plan_GRM_summary.md
@@ -16,9 +16,12 @@
   - 跨模型实验结果：/home/dais/workspace/Robo-Dopamine/mydata_bench/exp_plan_crossmodel_summary.md
 
 
+
 ## 主线目标1
-- 遵守/home/dais/workspace/Robo-Dopamine/mydata_bench/exp_plan_addbase.md 完成新增baseline任务
+
+- 遵守/home/dais/workspace/Robo-Dopamine-addbase/mydata_bench/exp_plan_addbase.md 完成新增baseline任务
 - 直到新增baseline的所有实验完成，得到完整的实验结果总结mydata_bench/exp_plan_addbase_summary.md
+
 
 
 ## 主线目标2
@@ -45,6 +48,7 @@
 - 不允许进行git 操作本地已有的仓库，只能git clone开源仓库进行参考；
 - 不允许对本地数据，结果等进行删除修改等操作，只能新增；
 - 不用担心耗时，进行充分的调研、思考、理论分析，提出有道理的优雅的方案，严禁作弊的方法
+- 注意GPU可能被其它程序使用，根据空余显存灵活使用，优先使用空闲GPU
 
 
 
@@ -78,14 +82,14 @@
 
 **数据集** ：/home/dais/workspace/data/mydata_v2/new ;/home/dais/workspace/Robo-Dopamine/results/mydata_bench/cohorts/auto_grounded_v2 (认为这就是正确的，不需要人工审核)
 
-**config** 放在：/home/dais/workspace/Robo-Dopamine/mydata_bench/configs/v2_crossmodel
+**config** 放在：/home/dais/workspace/Robo-Dopamine-addbase/mydata_bench/configs/v2_crossmodel
 
 **输入**：video->text ; text->video; image->text ; text->image ;interleaved ;以上五种都需要尝试，方法最好能在大部分输入构造下work
-**输出** 在：/home/dais/workspace/Robo-Dopamine/results/mydata_bench/experiments_v2_corssmodel/auto_research
+**输出** 在：/home/dais/workspace/Robo-Dopamine-addbase/results/mydata_bench/experiments_v2_corssmodel/auto_research
 
 **conda环境**：sam3:rewardbench-sam3 ；其它实验：robo-dopamine
 
-**可用GPU**：0，1，2
+**可用GPU**：0，1，2 ,3
 
 **vpn** : proxy_on
 
