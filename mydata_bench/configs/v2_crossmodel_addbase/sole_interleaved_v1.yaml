@@ -1,0 +1,14 @@
+model: sole
+model_path: /home/dais/workspace/model/SOLE-R1-8B
+protocol: interleaved
+scope: all_frames
+skip_early_layers: 8
+ranking_metric: raw_mass
+output_dir: /mnt/public1/dais/workspace/Robo-Dopamine-addbase/results/mydata_bench/experiments_v2_addbase/session_20260908/sole_interleaved_v1
+official_input: false
+sample_frames: 8
+max_new_tokens: 512
+do_sample: false
+sampling_deviation: Greedy deterministic decoding for paired comparisons; official
+  rewardgen default sampling temperature 1.0 top_p 0.9 top_k 50 max_tokens 200
+seed: 20260908

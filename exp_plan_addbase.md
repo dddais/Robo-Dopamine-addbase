@@ -71,3 +71,7 @@
 3.预测分布：统计在suc,fail数据上模型预测的lable分布，以及各个具体task上的模型预测分布；
 4.pairwise区分度分析：因为数据集构成原理是1条suc数据，对应了1条或多条相同视频，不同instruction的fail数据，所以需要先找到suc数据所对应的fail数据，分析相同视频下不同instruction带来的影响。对于roboreward-8b,qwen这种输出离散的模型，计算统计配对数据中suc数据的预测值与fail数据的预测值的差值，把差值分成：负，0，1，2，3，4几档统计一下；
 5.ranking head统计:列出具体的top 8，统计top 8,32,64在不同模型的重合度
+
+## 2026-09-09 21:07：新增baseline主线已完成
+
+五输入native、ranking、原attention及SOLE full/terminal的全部预定实验已完成尝试。最终双MAE、双阈值、分类/task分布、配对、top8与跨模型重合、原生格式/几何错误及zero/记录审计完整见[新增baseline总结](mydata_bench/exp_plan_addbase_summary.md)与[最终总报告](mydata_bench/auto_research_addbase/FINAL_RESEARCH_REPORT_20260909.md)。原数据与失败版本保留，不将实验完成写成所有方法有效。

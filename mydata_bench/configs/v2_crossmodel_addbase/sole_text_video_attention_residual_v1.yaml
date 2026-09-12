@@ -1,0 +1,98 @@
+model: sole
+model_path: /home/dais/workspace/model/SOLE-R1-8B
+protocol: text_video
+scope: all_frames
+skip_early_layers: 8
+ranking_metric: raw_mass
+output_dir: /mnt/public1/dais/workspace/Robo-Dopamine-addbase/results/mydata_bench/experiments_v2_addbase/session_20260908/sole_text_video_attention_residual_v1
+official_input: false
+sample_frames: 8
+max_new_tokens: 512
+do_sample: false
+sampling_deviation: Greedy deterministic decoding for paired comparisons; official
+  rewardgen default sampling temperature 1.0 top_p 0.9 top_k 50 max_tokens 200
+seed: 20260908
+attention_engine: native_residual
+intervention_schedule: all_steps
+conditions:
+- name: baseline
+  k: 0
+- name: target_k8
+  k: 8
+  kind: bias
+  bias: 6.0
+  scope: all_frames
+  region: target
+  head_group: high
+  query_scope: all
+- name: wrong_k8
+  k: 8
+  kind: bias
+  bias: 6.0
+  scope: all_frames
+  region: wrong
+  head_group: high
+  query_scope: all
+- name: low_rank_k8
+  k: 8
+  kind: bias
+  bias: 6.0
+  scope: all_frames
+  region: target
+  head_group: low
+  query_scope: all
+- name: target_k32
+  k: 32
+  kind: bias
+  bias: 6.0
+  scope: all_frames
+  region: target
+  head_group: high
+  query_scope: all
+- name: wrong_k32
+  k: 32
+  kind: bias
+  bias: 6.0
+  scope: all_frames
+  region: wrong
+  head_group: high
+  query_scope: all
+- name: low_rank_k32
+  k: 32
+  kind: bias
+  bias: 6.0
+  scope: all_frames
+  region: target
+  head_group: low
+  query_scope: all
+- name: target_k64
+  k: 64
+  kind: bias
+  bias: 6.0
+  scope: all_frames
+  region: target
+  head_group: high
+  query_scope: all
+- name: wrong_k64
+  k: 64
+  kind: bias
+  bias: 6.0
+  scope: all_frames
+  region: wrong
+  head_group: high
+  query_scope: all
+- name: low_rank_k64
+  k: 64
+  kind: bias
+  bias: 6.0
+  scope: all_frames
+  region: target
+  head_group: low
+  query_scope: all
+- name: zero_bias_k64
+  k: 64
+  kind: bias
+  bias: 0.0
+  scope: all_frames
+  query_scope: all
+ranking_path: /mnt/public1/dais/workspace/Robo-Dopamine-addbase/results/mydata_bench/experiments_v2_addbase/session_20260908/sole_text_video_v1/ranking.json

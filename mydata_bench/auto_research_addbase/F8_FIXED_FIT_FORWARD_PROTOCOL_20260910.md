@@ -1,0 +1,14 @@
+# F8完整训练集固定幅度前向诊断
+
+## Material Passport
+阶段：training mechanism，预先固定一次前向比较；不连接验证或保留测试标签；目标3未完成。
+
+因F7在Qwen text_video的训练CE下降但评分及指令排序未同步改善，事先固定同一输入，使用全部1942条/446个episode组，对比baseline、F7和F8的b1/k48。F8全部原生5档保留，只有拟合选出的头和方向不同。没有搜索b、k或输出增益。F7完整原始记录经SHA校验后作为固定对照；对每条样本真实重算baseline，要求其logits与F7诊断逐值一致。
+
+F8执行真实全queryROI干预；689条无ROI调用原冻结fallback，仍有真实baseline前向并保留在主分母。有ROI时必须与F8拟合的定位对齐，钩子确实覆盖全部causal queries。预测错误保留，任何错误导致完整均值不合格。
+
+报告两种训练损失（CE及累计有序log loss）、原生准确率和MAE，同时给出样本等权、episode等权以及全部1–5等级分布。基于同一F8有序损失梯度计算F7与F8两组固定头的一阶预测，避免把不同损失的梯度量级直接相比。这里的训练读出指标只是拟合机制诊断，不能替代完整原数据验收或独立证据。
+
+代码f8_fit_finite_step_diagnostic.py、单个YAML和95项源码依赖已在运行前冻结于R/f8_fit_finite_step_diagnostic_v1/frozen_plan_v1.json，并存内容快照。CPU聚合检查覆盖无ROI保留、样本/episode均值差异和错误不合格。GPU1在空闲81153MiB时启动PID2603016；主F7/F8队列继续。无自动重试，不因诊断结果改变已冻结F8。
+
+R=`results/mydata_bench/experiments_v2_corssmodel/auto_research/session_20260909_robust_v1`。

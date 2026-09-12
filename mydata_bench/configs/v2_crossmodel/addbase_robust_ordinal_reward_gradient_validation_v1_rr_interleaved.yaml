@@ -1,0 +1,200 @@
+model: rr
+model_path: /home/dais/workspace/model/RoboReward-8B
+protocol: interleaved
+max_new_tokens: 128
+stage: F8_public_train_model_selection_reused_after_F6
+input_file: /mnt/public1/dais/workspace/Robo-Dopamine-addbase/results/mydata_bench/experiments_v2_corssmodel/auto_research/session_20260909_robust_v1/external_training_research_v1/grounding_v1/grounded_inputs_v1.jsonl
+input_sha256: beae23ce3068543a035a1e6110d5a189c5e3cb5fad2c52692146ba206168d4e6
+example_ids_file: /mnt/public1/dais/workspace/Robo-Dopamine-addbase/results/mydata_bench/experiments_v2_corssmodel/auto_research/session_20260909_robust_v1/external_training_research_v1/training_validation_ids_v1.json
+engineering_ids_file: /mnt/public1/dais/workspace/Robo-Dopamine-addbase/results/mydata_bench/experiments_v2_corssmodel/auto_research/session_20260909_robust_v1/external_training_research_v1/f8_validation_engineering_ids_v1.json
+output_dir: /mnt/public1/dais/workspace/Robo-Dopamine-addbase/results/mydata_bench/experiments_v2_corssmodel/auto_research/session_20260909_robust_v1/ordinal_reward_gradient_validation_v1/rr_interleaved
+ranking_file: /mnt/public1/dais/workspace/Robo-Dopamine-addbase/results/mydata_bench/experiments_v2_corssmodel/auto_research/session_20260909_robust_v1/ordinal_reward_gradient_v1/rr_interleaved/fit/ranking_v1.json
+ranking_sha256: 68617908882700a2ecc561c3cd0ae28229117e8e3f124ad6e7b640625744a001
+conditions:
+- name: baseline
+  k: 0
+- name: native_generation_baseline
+  k: 0
+  kind: native_generation
+- name: original_all_k32
+  k: 32
+  kind: bias
+  bias: 6.0
+  scope: all_frames
+  ranking: original
+- name: reward_gradient_k32
+  k: 32
+  kind: reward_gradient
+  bias: 1.0
+  scope: all_frames
+  signed: true
+- name: original_all_k48
+  k: 48
+  kind: bias
+  bias: 6.0
+  scope: all_frames
+  ranking: original
+- name: reward_gradient_k48
+  k: 48
+  kind: reward_gradient
+  bias: 1.0
+  scope: all_frames
+  signed: true
+- name: original_all_k64
+  k: 64
+  kind: bias
+  bias: 6.0
+  scope: all_frames
+  ranking: original
+- name: reward_gradient_k64
+  k: 64
+  kind: reward_gradient
+  bias: 1.0
+  scope: all_frames
+  signed: true
+- name: reward_gradient_zero_k48
+  k: 48
+  kind: reward_gradient
+  bias: 0.0
+  scope: all_frames
+  signed: true
+- name: reward_gradient_wrong_k48
+  k: 48
+  kind: reward_gradient
+  bias: 1.0
+  scope: all_frames
+  signed: true
+  region: wrong
+- name: reward_gradient_low_k48
+  k: 48
+  kind: reward_gradient
+  bias: 1.0
+  scope: all_frames
+  signed: true
+  head_group: low
+- name: raw_all_k48
+  k: 48
+  kind: reward_gradient
+  bias: 1.0
+  scope: all_frames
+  query_scope: all
+  ranking: original
+  signed: false
+- name: learned_positive_k48
+  k: 48
+  kind: reward_gradient
+  bias: 1.0
+  scope: all_frames
+  signed: false
+- name: learned_readout_k48
+  k: 48
+  kind: reward_gradient
+  bias: 1.0
+  scope: all_frames
+  signed: true
+  query_scope: readout
+primary_k: 48
+k_neighborhood:
+- 32
+- 48
+- 64
+source_sha256:
+  mydata_bench/auto_research_addbase/frame_transport.py: 3512cf9966fa24cc8e6436d4355696e10577bc30b1e748a45892cd2bf3d7c1d2
+  mydata_bench/auto_research_addbase/robust_runner.py: 61fe4dd4f9f518886b6bad677e94ac919415d9ab54a34e086556f054943ffd41
+  mydata_bench/auto_research_addbase/robust_prepare.py: 4dc7c18912ecdca987b8bcfc1033c435c34b4ac0bdd3135bf84b7c84780efe12
+  mydata_bench/auto_research_addbase/score_branches.py: 3129698751678f73d53ef187f443e6c362a393428b06f5659b722ba7cbb1cdb7
+  mydata_bench/auto_research_addbase/discrete_runtime.py: e0c46548f45f9f63461c4307f9ef1e3d653df9040b7d4f3ca8a377e2ff4bae61
+  mydata_bench/meter_eval/runtime.py: 3d1d82a3e5e425bba5468532eb8b021f97e65fe084710d2936673e574d4fb2b7
+  mydata_bench/top_eval/batch_attention_residual.py: 10f0e2c01acbd48b23765ef7c42023d0737517f4b2806d7d1ab5cd9d614bd1bc
+  mydata_bench/auto_research_addbase/reward_gradient_attention.py: 8f5942dab79d06e25f354f63dd4a7d6d8f4a92cd74614ad71c1a233921861ad7
+  mydata_bench/auto_research_addbase/all_query_reward_gradient_attention.py: 57dce5c6a61662c162e17d2d1135491d772a9ccf62e7bb76a195d70407653cf6
+  mydata_bench/auto_research_addbase/all_query_reward_gradient_runtime.py: 063299ebb7fe862f10cc1336e42ac5a6ac2a077365ab945b6cd3dbbf2081fada
+  mydata_bench/auto_research_addbase/all_query_reward_gradient_development.py: f3a9c71ed0109440d69a361ed34ca7d73f69ae44f1e159a779e997b686ed2ba3
+  mydata_bench/auto_research_addbase/freeze_ordinal_reward_gradient_development.py: 22fb2b03295a1ad6c6369fd2aed23d5876d3242f3a906c6c3b9ec1b92ad9507f
+  mydata_bench/__init__.py: 0468eb4c8922921c50ac4396595c4401b68051823d93b6bdf828a311d0d2c211
+  mydata_bench/attention_eval/__init__.py: fad3e165482a51aaca3eff04a2de038b1421ab850ba0eb26a7902a9d9f69a28f
+  mydata_bench/attention_eval/masking.py: 03ef13cf8c63e29495c7ff68038c19d81aebfdae802614ca40d7e0b6b362054f
+  mydata_bench/attention_eval/runtime.py: 3dd267cd93b09fa8750bbbf661c3856473ea2c4a0dab724c9acd4c1ba377ae7c
+  mydata_bench/auto_research_addbase/all_query_reward_gradient_engineering.py: d2257b46ae99cf5dd3d0640bcfe590e0615dc90dcaf9c48c7344442979c8b8b1
+  mydata_bench/auto_research_addbase/all_query_reward_gradient_evaluation_queue.py: 2dd994547514696da539e00c9d1d81f33f080764196f1fc1547d24c5c45fd032
+  mydata_bench/auto_research_addbase/all_query_reward_gradient_fit.py: 04f05084843df10d115a875b33d17aa17c58f875a7d33b3413074195535cd6b5
+  mydata_bench/auto_research_addbase/all_query_reward_gradient_fit_queue.py: 1d8eccba5c4c094ba9447194ec9e8198a8b576f90f824eb22053c41848a91efb
+  mydata_bench/auto_research_addbase/all_query_reward_gradient_validation.py: 6c160396476959be1e1009a48178fdb3cb753565b450114553b28ad2df75700c
+  mydata_bench/auto_research_addbase/analyze_all_query_reward_gradient_development.py: 9448851e31390a0338b3cf2b7abda565204c6e083a7c95bc820b68a046967a04
+  mydata_bench/auto_research_addbase/analyze_all_query_reward_gradient_validation.py: f72fe0fb5d6d74f6de1c3ef74f076893eda259f5151a06d4453de2153018845f
+  mydata_bench/auto_research_addbase/analyze_reward_gradient_validation.py: 49fecba561c8357c5ae25dcd1b9cc089c6e2813e7fb21e4a508581b0593f2eb2
+  mydata_bench/auto_research_addbase/attention.py: bd5aef13714f1006bad7570940bcba9821b0f5c9dcaeb6b421d8e7c95833b722
+  mydata_bench/auto_research_addbase/common.py: 4312269c731995c551b2d432496ad420147592804881c9384a6dc2df0d377523
+  mydata_bench/auto_research_addbase/freeze_all_query_reward_gradient_development.py: 82173a36ca1cb22e207b5bfe89db49ddb8ff28f3abd2deeb6b50c440efc9b6ef
+  mydata_bench/auto_research_addbase/freeze_all_query_reward_gradient_fit.py: 5774328e1c63db81f21cf919f014250bc958900011c741c24ad84ec6e3ed966f
+  mydata_bench/auto_research_addbase/freeze_all_query_reward_gradient_validation.py: c5ebb00f9bf38893791f7633ef63ec275d19f13c904e382bd1fe1718e6fb9901
+  mydata_bench/auto_research_addbase/freeze_reward_gradient_development.py: 8c978a8fc22c10877b5a421beea8ddfa5e361e3e884f25a13bc296b913115919
+  mydata_bench/auto_research_addbase/freeze_reward_gradient_validation.py: dd46126947f73780089126b68d4d4f34454ec4c9811f8cee5c052a81419e62cc
+  mydata_bench/auto_research_addbase/metrics.py: 173583cff3ed518b8b10cc9f8ac5023fb5059035bd3d8eadb39685494e04067b
+  mydata_bench/auto_research_addbase/prepare_external_head_training.py: ff42de40b7ed3bfb9701197ddb212418906811e5a51dd466d5f7d69ed8ed0c9f
+  mydata_bench/auto_research_addbase/reward_control_feasibility.py: 87d94d45663494e08cbedd7eec6b467395fb2bef5cda2c83dd0192b2cfb312a5
+  mydata_bench/auto_research_addbase/reward_gradient_development.py: bc012fbbf57c3d0bb6d8882f22479ee9c99125abc8b2a863382014969ce90651
+  mydata_bench/auto_research_addbase/reward_gradient_engineering.py: 19d97b6862b082f035d942d600befc7c38894d73df6795b2462fa1201d1aba1c
+  mydata_bench/auto_research_addbase/reward_gradient_evaluation_queue.py: ca475020c33e3f271db69337444f5fc2163ce2f2b4d5ac5fc52d13d3699fe3bc
+  mydata_bench/auto_research_addbase/reward_gradient_ranking.py: b9d3a91fe05a58626f9161124c828eaeb8fdab697eefeb03ecf2106244fbedb9
+  mydata_bench/auto_research_addbase/reward_gradient_runtime.py: 6045534b1fc777c62d0f9c1656272a6249f5b20e60b0b6e62fc74d9691f5f2ff
+  mydata_bench/auto_research_addbase/reward_gradient_validation.py: 23f91d123f73521ff309e7351cf227acbf269671534d1e556c074b68a991d91e
+  mydata_bench/auto_research_addbase/reward_validation_metrics.py: 03c85afe5e8862ebee641c71a1df13c60e8ededd730274d2028502bbeb31a483
+  mydata_bench/auto_research_addbase/robust_analyze.py: 0f10e3ce39c1dbf3e2b8f29234fee89ac8e2296f9534d5a5314686a4f18cb31b
+  mydata_bench/auto_research_addbase/robust_external_data.py: 697df081d2ade826f86bda614c5c091f5e940c7e516c38916094f94058842903
+  mydata_bench/auto_research_addbase/robust_external_episode_groups.py: 05dbfc41bb0fd62e79ab33707f9095030330422a03fe28b0a79e7487e63d852d
+  mydata_bench/config.py: ca686b1bc6cc823f6425492daac42eef709b7e7a4875771f82cc62e94ee5413a
+  mydata_bench/data.py: 3407804e3aa4e6ad74e6e7efa701bec804ce4a53f60da7d8e50479c985c437e3
+  mydata_bench/io.py: a399347b54734f95a8912e6b18b62665894658dd9d1a188953129503ded03d5d
+  mydata_bench/meter_eval/__init__.py: d6f2d4dfc6986ca140aaff6cb33946f11bb4647b92a1ff3f52b7c798f3ae78b7
+  mydata_bench/meter_eval/model.py: 0fc65d17a867d9ca626a055ed8bf78f77704f1bf08db2efdb93e31299ea7d042
+  mydata_bench/meter_eval/readout.py: 189a20acbb76cbb1cca30f4a5ef5e56d841da5095b15bb69fc8a2a0dd4c8113d
+  mydata_bench/protocol.py: 1d08510436a07cf0fedffa25f5cc203502cb876b576ea9d3e6867eddf7202fce
+  mydata_bench/qwen_eval/__init__.py: 5ae3821668061500d9e48b209a3db6d638d3e18c8eb35e9ed4299666eeda8d7e
+  mydata_bench/qwen_eval/protocols.py: 9cf55181a67db3d8848706abf7614e9ff05441923dcc16e02d735a9e510f853c
+  mydata_bench/roboreward_eval/__init__.py: 5badd0ed5c67f2e2f5bea726932baa1d6305ae1570208cc566fcd990e51f06c2
+  mydata_bench/roboreward_eval/paper_protocol.py: 1a3c4b5ec0330eae1757712ed3767a02b2128d5bba453c1d11ab37c903738783
+  mydata_bench/roboreward_eval/runner.py: f01fad22f457ae7e279183156c0bc5c08e1eee7d7fd60da066d6fb8a5637ca21
+  mydata_bench/schemas.py: 65d30b720d51655897d5aa3d2a3053e16134f5c85e344cf6c02e35a9e2d89239
+  mydata_bench/top_eval/__init__.py: 1f7405163b1ca56c06fdc63c238835441f55bbe3cc22087a3f639a4018b1c3ca
+  mydata_bench/top_eval/answer_distribution.py: 001dd68d269c6c42bb252a71ce5f89527ba06f2fa1c8de9e3f8c9612ed5dc64f
+  mydata_bench/top_eval/batch_attention.py: 06d569e38bf45a3cf24b344e340ffbc1f415a31db47bc85a3417a8831c031b48
+  mydata_bench/top_eval/batch_attention_vectorized.py: 0d139e9cd2ea2a0f404296605b0cd1d92ecfc9d1e7bad61a9d21c1840e203060
+  mydata_bench/top_eval/batch_baseline.py: 4fc37441de90476270db1f82a0012cd4883297b2c24ee41afe245f6ae9010106
+  mydata_bench/top_eval/controls.py: 7d843421520f80e3293d9657afb937415c2f731ebea7931565ca6b739b710289
+  mydata_bench/top_eval/runtime.py: 491982cf48466da1659216d28a4d057f4a2cc5b58dc8294a220c3a6942311117
+  mydata_bench/video.py: aab82b001f767f4f04a236ee00f4180e1d1f194a5d93bb52487213fb046ea1dd
+  mydata_bench/auto_research_addbase/reward_gradient_fit.py: f2367c018cb0d67780ffaed8c741cbddf7443ec2c31e5ea0b6890d370aab6654
+  mydata_bench/auto_research_addbase/freeze_reward_gradient_fit.py: 983276d2495a9dce4af2c1420a19f807221bb1902eb2cf7544cd71996b2f4742
+  mydata_bench/auto_research_addbase/native_cumulative_ordinal_loss.py: 418ac9fb1ab821d37c7216b8b6caafb475a256422c2cd2686902050bee8fac27
+  mydata_bench/auto_research_addbase/ordinal_reward_gradient_engineering.py: 0f80514454826a089a42d7333468aae20f65498fd2386b2b923606909d93b3e5
+  mydata_bench/auto_research_addbase/ordinal_reward_gradient_fit.py: c2108062bbc4b10da4c421fbf3f08b7d7858bc585353c3cdd32b0bb8c16571d1
+  mydata_bench/auto_research_addbase/freeze_ordinal_reward_gradient_fit.py: 0d2bd223f9756f8a07fb4cd30a2fff322b4366b565a47c4854f66547771011e4
+  mydata_bench/auto_research_addbase/ordinal_reward_gradient_fit_queue.py: 39c3928c4d75f9b0d48c02d4456d8cf6730035c8afb931e69849dee054dc8263
+  mydata_bench/auto_research_addbase/freeze_ordinal_reward_gradient_policy.py: c7976c1e4269369402ac05b1a09f91eaee6d5757b417c9cc88425e1205faf887
+  mydata_bench/auto_research_addbase/f8_reference_comparison.py: 20a674632c1c8cc5fae5c0d671484e0b8a858cd79453d60a6816f5de3d88d29e
+  mydata_bench/auto_research_addbase/freeze_ordinal_reward_gradient_validation.py: 9d3ab9cd3227073f05677da83b498c9d9eb79759723d6f79c5d44483aa8ed83e
+  mydata_bench/auto_research_addbase/analyze_ordinal_reward_gradient_development.py: edb845a86a2418e3ccc53c89e05f0d55e168b6eaeedb5b54909acc98cff7e8b7
+  mydata_bench/auto_research_addbase/analyze_ordinal_reward_gradient_validation.py: d7a1d3c4580c17ce93a222e5779f742ba8ba15836699fc313fb07f46cffffd43
+  mydata_bench/auto_research_addbase/ordinal_reward_gradient_evaluation_queue.py: 8ff8463c8ed89a0f41b6290c19f499c3a1f687a03e158696ee77b8da1504f759
+  mydata_bench/auto_research_addbase/all_query_reward_gradient_full_old.py: 2142933d2898a9a44079aee01bf362e302450986f3572c3b010a454770c4389d
+  mydata_bench/auto_research_addbase/analyze_all_query_reward_gradient_full_old.py: e4a34a51227972acb3db42c8f2bfa17d5bb23ea328f317dc70307ce8eb226693
+  mydata_bench/auto_research_addbase/freeze_ordinal_reward_gradient_full_old.py: ae3351cd1b3c4b613229641d807fc1862b8f8b9817ef7e5866be42bb6c705f29
+  mydata_bench/auto_research_addbase/analyze_ordinal_reward_gradient_full_old.py: 507896740a77d00bfe04b8946a0e9fd7bacb34f2e882e13c3541ad09e9d4a840
+  mydata_bench/auto_research_addbase/ordinal_reward_gradient_full_old_queue.py: 9577ccd81f5e7e6d7d7aa751426e021efc7f771a61712f1fca311527dde9eef5
+output_score_adjustment: none
+attention_engine: native_residual
+final_confirmation_opened: false
+original_ranking_file: /mnt/public1/dais/workspace/Robo-Dopamine-addbase/results/mydata_bench/experiments_v2_corssmodel/auto_research/session_20260908/development_v1/rr_interleaved/ranking.json
+original_ranking_sha256: 5be17a585e6e6852d3f3e792645dee7f573675eeb6004ac81e906476aee36965
+fitting_loss: native cumulative ordinal log loss
+ranking_supervised_source: separate official train fitting partition only
+evaluation_policy_sha256: f356cc56cb2df3904d3516119690d64707b44153930ead7cddd80159c1f7c390
+example_ids_sha256: 43de7403becf37686c80eb242aa7dab008a06be5d7b2c31bc9e9cf775ab8b44e
+engineering_ids_sha256: 678e772b12523c7810e42176f20e491fb4ec4f5f296662cab6e88db68630ed3a
+tracking_manifest_file: /mnt/public1/dais/workspace/Robo-Dopamine-addbase/results/mydata_bench/experiments_v2_corssmodel/auto_research/session_20260909_robust_v1/external_training_research_v1/f8_validation_tracking_sha256_v1.json
+tracking_manifest_sha256: 3787833621d56c0a5c66d950c7701539b1e578f1bfcd5d36e8762dfd45d99cec
+best_original_condition: original_all_k32
+inference_reads_labels: false
+grounding_fallback: typed score baseline for every ROI method and original ROI control;
+  keep all rows

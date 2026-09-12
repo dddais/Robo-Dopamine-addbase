@@ -1,0 +1,12 @@
+model: meter
+model_path: /home/dais/workspace/model/Robometer-4B
+processor_path: /home/dais/workspace/model/Qwen3-VL-4B-Instruct
+protocol: video_text
+scope: all_frames
+skip_early_layers: 8
+ranking_metric: raw_mass
+output_dir: /mnt/public1/dais/workspace/Robo-Dopamine-addbase/results/mydata_bench/experiments_v2_addbase/session_20260908/meter_video_text_v1
+official_input: false
+sample_frames: 8
+pixels: official longest side <=480; native processor defaults
+seed: 20260908

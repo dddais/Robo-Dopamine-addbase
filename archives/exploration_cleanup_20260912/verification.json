@@ -1,0 +1,57 @@
+{
+  "completed_at": "2026-09-12T15:26:33.672887+00:00",
+  "archive_sha256": "59bd0ff7ba67a8551aa2bf49b355abcb6af548a820c5ee503f9450fca01a8e43",
+  "archive_files_verified": 423,
+  "removed_from_active_tree": 423,
+  "counts": {
+    ".py": 105,
+    ".md": 20,
+    ".yaml": 298
+  },
+  "retained_original_files_byte_identical": 570,
+  "archive_bytes": 385808,
+  "archived_uncompressed_bytes": 5119463,
+  "experiment_processes_running_before_cleanup": [],
+  "changes_confined_to_manifest_paths_and_new_cleanup_documentation": true,
+  "results_and_datasets_modified": false,
+  "protected_test_read": false,
+  "post_cleanup_checks": {
+    "retained_original_files_byte_identical": 570,
+    "retained_exploration_python_syntax_checked": 129,
+    "frozen_source_checks": 8560,
+    "frozen_source_mismatches": 0,
+    "new_and_summary_links_checked": 18,
+    "new_broken_retained_document_links": 0,
+    "imported_entry_points": [
+      "mydata_bench.auto_research_addbase.run",
+      "mydata_bench.auto_research_addbase.queue",
+      "mydata_bench.auto_research_addbase.run_sole_attention_queue",
+      "mydata_bench.meter_eval.runtime",
+      "mydata_bench.top_eval.batch_baseline",
+      "mydata_bench.top_eval.batch_attention",
+      "mydata_bench.auto_research_addbase.all_query_reward_gradient_fit",
+      "mydata_bench.auto_research_addbase.ordinal_reward_gradient_fit",
+      "mydata_bench.auto_research_addbase.fit_row_weighted_reward_gradient_heads",
+      "mydata_bench.auto_research_addbase.all_query_reward_gradient_development",
+      "mydata_bench.auto_research_addbase.all_query_reward_gradient_validation",
+      "mydata_bench.auto_research_addbase.f9_fit_finite_step_diagnostic"
+    ]
+  },
+  "restore_check": {
+    "archive_checksum_ok": true,
+    "restoration_files_verified": 423,
+    "restoration_permissions_verified": true,
+    "restore_refuses_overwrite": true,
+    "temporary_restore_files_removed": true
+  },
+  "targeted_tests": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 /home/dais/miniconda3/envs/robo-dopamine/bin/python -B -m pytest --import-mode=importlib -q -p no:cacheprovider mydata_bench/auto_research_addbase/test_attention.py mydata_bench/auto_research_addbase/test_batch_attention.py mydata_bench/auto_research_addbase/test_paired_and_typed_readout.py mydata_bench/auto_research_addbase/test_all_query_reward_gradient_attention.py mydata_bench/auto_research_addbase/test_native_cumulative_ordinal_loss.py mydata_bench/auto_research_addbase/test_row_weighted_gradient_ranking.py",
+    "exit_code": 0,
+    "output": "..............                                                           [100%]\n14 passed in 9.99s",
+    "initial_collection_note": "Default pytest import mode cannot resolve existing relative imports in this namespace package. Reran with --import-mode=importlib; all 14 tests passed. No source files changed."
+  },
+  "new_navigation_files": [
+    "mydata_bench/auto_research_addbase/README.md",
+    "archives/exploration_cleanup_20260912/README.md"
+  ]
+}
