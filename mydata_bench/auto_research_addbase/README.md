@@ -2,10 +2,13 @@
 
 优先阅读两份简短总结：[baseline 结果](../exp_plan_addbase_baseline_summary.md)、[方法探索结果](../exp_plan_addbase_method_summary.md)。目前没有满足三模型各三输入目标并通过独立确认的方法。
 
+放宽幅度和输入数量要求后的单独记录：[区域差分法](../method_region_contrast.md)、[其他候选方法](../method_alternative_candidates.md)。前者有三模型498条结果及SOLE 60条初筛信号，后者保留F2/F6/F9等局部有效路线。
+
 | 内容 | 入口 |
 | --- | --- |
 | 新增 baseline 与原 attention | `run.py`、`queue.py`、`run_sole_attention_queue.py`；SOLE 批处理在 `../top_eval/` |
 | 正式新增模型配置 | [v2_crossmodel_addbase](../configs/v2_crossmodel_addbase/)：20 个正式配置 |
+| Robometer success head | `../meter_eval/success_metrics.py`：从保存输出补充二分类统计；结果见[baseline总结第2.1节](../exp_plan_addbase_baseline_summary.md) |
 | 跨模型与最新方法配置 | [v2_crossmodel](../configs/v2_crossmodel/)：16 个原 baseline/attention 配置、F7–F9 各 45 个 fit/development/validation 配置、4 个训练诊断配置 |
 | 最新方法实现 | `all_query_reward_gradient_*`（F7）、`ordinal_reward_gradient_*`（F8）、`row_weighted_reward_gradient_*` / `fit_row_weighted_reward_gradient_heads.py`（F9） |
 | 完整结果与诊断 | [F7–F9 结果](F7_F8_F9_COMPLETE_RESULTS_20260912.md)、[F9 训练诊断](F9_FIXED_FIT_FORWARD_RESULT_20260912.md) |

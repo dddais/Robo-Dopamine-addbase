@@ -1132,3 +1132,8 @@ layer/head从0开始。坐标重合不代表功能等价；跨架构宽度和训
 ## 稳健研究状态更新 2026-09-10T13:28:02.865479+08:00
 
 目标3仍未完成。F7全部15项独立拟合与零干预审计完成，冻结评价进行中；F8有序损失方案完成三模型真实工程检查，当前8/15项拟合结束。F8评价／完整846条件流程已冻结83项源码并启动等待，保留2831奖励性能仍未打开；旧498复用不能作为新独立确认。详见[最新进度](auto_research_addbase/ROBUST_PROGRESS_20260910T132802.md)、[F8评价方案](auto_research_addbase/F8_EVALUATION_PROTOCOL_20260910.md)和[理论／来源说明](auto_research_addbase/F8_ORDINAL_THEORY_AND_SOURCE_20260910.md)。不能提前宣布新方法稳定有效。
+# 2026-09-13：Robometer success head 补充入口
+
+此前历史统计主要使用progress head；现已从保存输出补齐success head的五输入1213条baseline，以及同846条的原attention。按官方示例q>0.5二分类，“文本→视频”总准确率76.26%（suc54.05%、fail87.47%）；官方“文本→图像”为61.50%（suc94.84%、fail44.67%）。原两套端点阈值另列，不能与0.5二分类准确率混用。
+
+简明结论见[baseline总结第2.1节](exp_plan_addbase_baseline_summary.md)，逐输入/条件/task、配对与概率误差见[success head补充报告](../results/mydata_bench/experiments_v2_addbase/session_20260908/meter_success_head_report_20260913_v1/report.md)。数据、既有预测及历史结果未修改；下文历史数字保持原有progress口径。
